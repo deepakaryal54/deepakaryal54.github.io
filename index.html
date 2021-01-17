@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Avhi Aryal</title>
+        <style>
+            .main{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="loading">
+        loading.....
+    </div>
+        <div class="main" id="mainContainer" hidden>
+            <img 
+                height="100px" 
+                width="100px" 
+                id="profilePic" 
+                alt="avhi aryal">
+            <h1 id="fullName"></h1>
+            <p id="bio"></p>
+            <h5 id="followersInformation"></h5>
+            <p>View my all projects on <a id="githubLink">Github</a></p>
+        </div>
+        <script>
+            fetch("https://api.github.com/users/avhiaryal")
+            .then(response => response.json())
+            .then(function(data){
+                console.log(data)
+                let followersCount = data['followers']
+                let followersInfo = `Followers on Github: ${followersCount}`
+                
+                document.getElementById('profilePic').src = data['avatar_url']
+                document.getElementById('fullName').textContent = data['name']
+                document.getElementById('bio').textContent = data['bio']
+                document.getElementById('followersInformation').textContent = followersInfo
+                document.getElementById('githubLink').href = data['html_url']
+                document.getElementById('mainContainer').hidden = false
+                document.getElementById('loading').hidden = true
+            })
+        </script>
+        <!-- <script>
+             fetch("https://api.github.com/users/avhiaryal/repos")
+             .then(response => response.json())
+             .then(function(data){
+                 console.log(data)
+             })
+        </script> -->
+    </body>
+</html>

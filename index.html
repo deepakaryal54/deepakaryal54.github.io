@@ -1,51 +1,134 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        
         <title>Avhi Aryal</title>
+        
         <style>
-            .main{
-                text-align: center;
-            }
+            .main{text-align: center;}
+            #fullName{color: aqua;}
+            #bio{margin-left: 40px;margin-right: 20px; color: red;}
+            #followersInformation{margin-left :30px;}
+            #githubLink{margin-left: 30px;}
+            #title{text-align: center;color: navy;margin-top: 10px;margin-bottom: 20px;}
         </style>
+    
     </head>
     <body>
     <div id="loading">
         loading.....
     </div>
         <div class="main" id="mainContainer" hidden>
-            <img 
-                height="100px" 
-                width="100px" 
-                id="profilePic" 
-                alt="avhi aryal">
-            <h1 id="fullName"></h1>
-            <p id="bio"></p>
-            <h5 id="followersInformation"></h5>
-            <p>View my all projects on <a id="githubLink">Github</a></p>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    
+                    <a class="navbar-brand" href="#">
+                        <img id="profilePic" alt="" width="40" height="40" class="d-inline-block align-top">
+                        <span id="fullName" class="navbar-brand mb-0 h1"></span>
+                    </a>
+                    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item" id="bio"></li>
+                            <li class="nav-item" style="color: white;">Followers on Github
+                                <span class="badge bg-warning text-dark" id="followersInformation" style="margin-left: 1px;"></span></button></li>                    
+                            <a class="nav-link" id="githubLink" >Github</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="https://avhiaryal54.wordpress.com/">Blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+               
+            </nav>
         </div>
-        <script>
-            fetch("https://api.github.com/users/avhiaryal")
-            .then(response => response.json())
-            .then(function(data){
-                console.log(data)
-                let followersCount = data['followers']
-                let followersInfo = `Followers on Github: ${followersCount}`
-                
-                document.getElementById('profilePic').src = data['avatar_url']
-                document.getElementById('fullName').textContent = data['name']
-                document.getElementById('bio').textContent = data['bio']
-                document.getElementById('followersInformation').textContent = followersInfo
-                document.getElementById('githubLink').href = data['html_url']
-                document.getElementById('mainContainer').hidden = false
-                document.getElementById('loading').hidden = true
-            })
-        </script>
-        <!-- <script>
-             fetch("https://api.github.com/users/avhiaryal/repos")
-             .then(response => response.json())
-             .then(function(data){
-                 console.log(data)
-             })
-        </script> -->
+        <div style="padding: 20px">
+            <h1 id="title">My Github Projects</h1>
+            <a id="repoName1link"><button type="button" class="btn btn-outline-primary" id="repoName1"></button></a>
+            <a id="repoName2link"><button type="button" class="btn btn-outline-secondary" id="repoName2"></button></a>
+            <a id="repoName3link"><button type="button" class="btn btn-outline-success" id="repoName3"></button></a>
+            <a id="repoName4link"><button type="button" class="btn btn-outline-warning" id="repoName4"></button></a>
+            <a id="repoName5link"><button type="button" class="btn btn-outline-danger" id="repoName5"></button></a>
+            <a id="repoName6link"><button type="button" class="btn btn-outline-info" id="repoName6"></button></a>
+            <a id="repoName7link"><button type="button" class="btn btn-outline-dark" id="repoName7"></button></a><br><br>
+            <a id="repoName8link"><button type="button" class="btn btn-outline-danger" id="repoName8"></button></a>
+            <a id="repoName9link"><button type="button" class="btn btn-outline-primary" id="repoName9"></button></a>
+     
+            <a id="repoName11link"><button type="button" class="btn btn-outline-success" id="repoName11"></button></a>
+            <a id="repoName12link"><button type="button" class="btn btn-outline-warning" id="repoName12"></button></a>
+            <a id="repoName13link"><button type="button" class="btn btn-outline-danger" id="repoName13"></button></a>
+            <a id="repoName14link"><button type="button" class="btn btn-outline-info" id="repoName14"></button></a>
+           
+            
+
+            
+        </div>
+
+        
+            <script>
+                fetch("https://api.github.com/users/avhiaryal")
+                .then(response => response.json())
+                .then(function(data){
+                    console.log(data)
+
+                    let followersCount = data['followers']
+                    let followersInfo = `${followersCount}`
+                    
+                    document.getElementById('profilePic').src = data['avatar_url']
+                    document.getElementById('fullName').textContent = data['name']
+                    document.getElementById('bio').textContent = data['bio']
+                    document.getElementById('followersInformation').textContent = followersInfo
+                    document.getElementById('githubLink').href = data['html_url']
+                    document.getElementById('mainContainer').hidden = false
+                    document.getElementById('loading').hidden = true
+                })
+            </script>
+
+            <script>
+                fetch('https://api.github.com/users/avhiaryal/repos')
+                .then(response => response.json())
+                .then(function(data){
+                    console.log(data) 
+                    document.getElementById('repoName1').textContent = data[1].name
+                    document.getElementById('repoName1link').href = data[1].html_url
+                    document.getElementById('repoName2').textContent = data[2].name
+                    document.getElementById('repoName2link').href = data[2].html_url
+                    document.getElementById('repoName3').textContent = data[3].name
+                    document.getElementById('repoName3link').href = data[3].html_url
+                    document.getElementById('repoName4').textContent = data[4].name
+                    document.getElementById('repoName4link').href = data[4].html_url
+                    document.getElementById('repoName5').textContent = data[5].name
+                    document.getElementById('repoName5link').href = data[5].html_url
+                    document.getElementById('repoName6').textContent = data[6].name
+                    document.getElementById('repoName6link').href = data[6].html_url
+                    document.getElementById('repoName7').textContent = data[7].name
+                    document.getElementById('repoName7link').href = data[7].html_url
+                    document.getElementById('repoName8').textContent = data[8].name
+                    document.getElementById('repoName8link').href = data[8].html_url
+                    document.getElementById('repoName9').textContent = data[9].name
+                    document.getElementById('repoName9link').href = data[9].html_url
+                   
+                    document.getElementById('repoName11').textContent = data[11].name
+                    document.getElementById('repoName11link').href = data[11].html_url
+                    document.getElementById('repoName12').textContent = data[12].name
+                    document.getElementById('repoName12link').href = data[12].html_url
+                    document.getElementById('repoName13').textContent = data[13].name
+                    document.getElementById('repoName13link').href = data[13].html_url
+                    document.getElementById('repoName14').textContent = data[14].name
+                    document.getElementById('repoName14link').href = data[14].html_url
+                    
+
+                    
+
+                })
+              </script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     </body>
 </html>
